@@ -1,2 +1,8 @@
 # EM043-Code
-The code of project EM043 is being updated!
+To run this code, please run the `run.sh` script with :
+```bash
+cd ~ && \
+apt update && \
+cd ~/EM043-Code/HPS/overlay
+./run_pythonapp.sh
+```
