@@ -180,9 +180,6 @@ async def main():
                     logger.debug(f'Sent message: {msg}')
                     await client.send_message(msg)
                     
-                    #msg = create_component_telemetry('"CoralImage": {"x": 0.008}')
-                    #logger.debug(f'Sent message: {msg}')
-                    #await client.send_message(msg)
                 
                 finally :
                     await asyncio.sleep(delay)
