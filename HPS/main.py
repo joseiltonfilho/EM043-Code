@@ -2,12 +2,6 @@
 # Copyright (C) 2021 Intel Corporation 
 # Licensed under the MIT license. See LICENSE file in the project root for
 # full license information.
-# Microsoft's Origin File is moved to LICENSES/iot-edge-samples from the project root.
-
-# Origin
-# Copyright (c) Microsoft. All rights reserved.
-# Licensed under the MIT license. See LICENSE file in the project root for
-# full license information.
 
 import time
 import sys
@@ -23,9 +17,9 @@ from package.rfssensor import *
 from package.thresholdcontroller import *
 
 #Test without Azure IoT Edge
-isEdge = False
+isEdge = True
 #Test without FPGA design
-isReal = False
+isReal = True
 
 #Model is in public now and it can be searched.
 #https://github.com/Azure/iot-plugandplay-models/tree/main/dtmi/terasic/fcc
@@ -33,11 +27,11 @@ model_id ="dtmi:Terasic:FCC:DE10_Nano;1"
 useComponent = True
 
 #Global Instances at first to support simulations
-control_bridge = None
-data_bridge    = None
-gs = Gsensor(name="gSensor", real=False)
-rfs = RfsSensor(name='rfsSensors',real=False)
-thc = ThresholdController(real=False)
+control_bridge = True
+data_bridge    = True
+gs = Gsensor(name="gSensor", real=True)
+rfs = RfsSensor(name='rfsSensors',real=True)
+thc = ThresholdController(real=True)
 
 # PROPERTY TASKS
 async def execute_property_listener(client):
@@ -177,23 +171,18 @@ async def main():
                     if(isReal) :
                         gs_data = gs.get_telemetries()
                         rfs_data = rfs.get_telemetries(data_bridge)
-                    else : 
-                        gs_data = {"gSensor": {'x': thc.generate_module_dummy_value('X'), 'y': thc.generate_module_dummy_value('Y'), 'z':thc.generate_module_dummy_value('Z')}}
-                        rfs_data = {
-                            'lux':thc.generate_module_dummy_value('lux'),
-                            'humidity':thc.generate_module_dummy_value('humidity'), 'temperature':thc.generate_module_dummy_value('temperature'),
-                            'mpu9250': {
-                                'ax':thc.generate_module_dummy_value('ax'), 'ay':thc.generate_module_dummy_value('ay'), 'az':thc.generate_module_dummy_value('az'),
-                                'gx':thc.generate_module_dummy_value('gx'), 'gy':thc.generate_module_dummy_value('gy'), 'gz':thc.generate_module_dummy_value('gz'),
-                                'mx':thc.generate_module_dummy_value('mx'), 'my':thc.generate_module_dummy_value('my'), 'mz':thc.generate_module_dummy_value('mz')
-                            }
-                        }
+
+                        
                     msg = gs.create_component_telemetry(gs_data)
                     await client.send_message(msg)
                     logger.debug(f'Sent message: {msg}')
                     msg = rfs.create_component_telemetry(rfs_data)
                     logger.debug(f'Sent message: {msg}')
                     await client.send_message(msg)
+                    
+                    #msg = create_component_telemetry('"CoralImage": {"x": 0.008}')
+                    #logger.debug(f'Sent message: {msg}')
+                    #await client.send_message(msg)
                 
                 finally :
                     await asyncio.sleep(delay)
