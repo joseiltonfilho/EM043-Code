@@ -13,4 +13,4 @@ Please note that the python version of this project is `3.6`, not `3.7` as origi
 ```bash
 python3 --version
 ```
-For image processing at the EDGE with Azure connection, please downgrade and follow the step-by-step proceedures.
+For image processing at the EDGE with Azure connection, please downgrade and follow the [step-by-step](https://github.com/joseiltonfilho/EM043-Code/blob/main/step-by-step.md) proceedures.
