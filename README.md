@@ -9,7 +9,7 @@ chmod u+x run-EM043.sh
 ./run-EM043.sh
 ```
 
-Please note that the python version in this project is `3.6`, not `3.7` as originaly from Linux image. Check your version by command:
+Please note that the python version of this project is `3.6`, not `3.7` as originaly from [Ubuntu 18 image](http://download.terasic.com/downloads/cd-rom/de10-nano/AzureImage/DE10-Nano-Cloud-Native_18.04.zip). Check your version by command:
 ```bash
 python3 --version
 ```
