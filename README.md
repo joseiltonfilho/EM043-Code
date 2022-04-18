@@ -13,4 +13,4 @@ Please note that the python version of this project is `3.6`, not `3.7` as origi
 ```bash
 python3 --version
 ```
-For image processing at the EDGE with Azure connection, please downgrade and follow the [step-by-step](https://github.com/joseiltonfilho/EM043-Code/blob/main/step-by-step.md) proceedures.
+For image processing at the EDGE with Azure connection, please downgrade and follow the [step-by-step](https://github.com/joseiltonfilho/EM043-Code/blob/main/step-by-step.md) proceedures. A Jupyter Notebook for the image and video processing (offline) is presented here. To run in DE10nano, use virtual env or install jupyter using 'pip3 from python3.6'.
