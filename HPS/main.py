@@ -161,7 +161,7 @@ async def main():
             now = datetime.datetime.now()
             print("Time now:")
             #print(now.hour)
-            if now.hour == int(now.hour):
+            if now.hour == int(timer):
                 # send command to stir BMCs for 15min
                 ser.write(b"S-1")
                 time.sleep(900)  #wait 15 min
